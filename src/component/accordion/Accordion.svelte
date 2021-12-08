@@ -7,17 +7,22 @@
     let activeIndex = -1;
     let isMultiple = multiple;
 
-    function handleCick ({detail : id}) {
+    function handleCick({ detail: id }) {
         activeIndex = id;
     }
-
 </script>
 
 <div class="switch-mode">
-    <button class="btn btn--multiple-off { !isMultiple ? 'active' : ''}" on:click={() => isMultiple = false }>
+    <button
+        class="btn btn--multiple-off {!isMultiple ? 'active' : ''}"
+        on:click={() => (isMultiple = false)}
+    >
         only one open
     </button>
-    <button class="btn btn--multiple-on { isMultiple ? 'active' : ''}" on:click={() => isMultiple = true }>
+    <button
+        class="btn btn--multiple-on {isMultiple ? 'active' : ''}"
+        on:click={() => (isMultiple = true)}
+    >
         multiple item open
     </button>
 </div>
@@ -26,10 +31,10 @@
     {#each items as { label, content, id }, index (id)}
         <AccordionItem
             close={activeIndex !== index && !isMultiple}
-            label={ label }
-            content={ content }
-            id={ index }
-            on:item-click="{ handleCick }"
+            {label}
+            {content}
+            id={index}
+            on:item-click={handleCick}
         />
     {/each}
 </div>

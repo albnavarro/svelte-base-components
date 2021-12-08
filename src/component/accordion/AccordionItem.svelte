@@ -1,12 +1,12 @@
 <script>
-    import { createEventDispatcher } from 'svelte'
+    import { createEventDispatcher } from 'svelte';
     import { onMount } from 'svelte';
     import { tweened } from 'svelte/motion';
-    import { cubicOut } from 'svelte/easing'
+    import { cubicOut } from 'svelte/easing';
 
     export let label = 'default label';
     export let content = 'default content';
-    export let id = 0
+    export let id = 0;
     export let close = true;
     export let isActive = false;
 
@@ -14,13 +14,13 @@
 
     // Get content node
     let contentNode;
-    const getNode = (node) => contentNode = node;
+    const getNode = (node) => (contentNode = node);
 
     // Set up tween
     const height = tweened(0, {
-		duration: 400,
-		easing: cubicOut
-	});
+        duration: 400,
+        easing: cubicOut,
+    });
 
     // Close contnt
     function closeContent() {
@@ -30,39 +30,40 @@
     // Open content
     function opemContent() {
         contentNode.style.height = 'auto';
-        const contentHeight = contentNode.clientHeight
+        const contentHeight = contentNode.clientHeight;
         contentNode.style.height = '0px';
         height.set(contentHeight).then(() => {
-            contentNode.style.height = 'auto'
-        })
+            contentNode.style.height = 'auto';
+        });
     }
 
     // Toggle click
     function handleCick() {
         isActive = !isActive;
-        dispatch("item-click", id);
+        dispatch('item-click', id);
     }
 
     // Reactive action
-    $: { (!isActive) ? closeContent() : opemContent()}
-    $: { if(close) isActive = false }
+    $: {
+        !isActive ? closeContent() : opemContent();
+    }
+    $: {
+        if (close) isActive = false;
+    }
 
     onMount(() => {
         // Apply tween
         const unsubscribe = height.subscribe((val) => {
-            if(contentNode) contentNode.style.height = `${val}px`
-        })
+            if (contentNode) contentNode.style.height = `${val}px`;
+        });
 
-        return(unsubscribe)
-    })
-
-
+        return unsubscribe;
+    });
 </script>
-
 
 <div class="accordion__item">
     <button class="accordion__item__toggle" on:click={handleCick}>
-        { label }
+        {label}
     </button>
 
     <div class="accordion__item__content" use:getNode>
@@ -90,6 +91,4 @@
             }
         }
     }
-
-
 </style>

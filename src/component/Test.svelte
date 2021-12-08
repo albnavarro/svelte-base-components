@@ -1,5 +1,5 @@
 <script>
-    export let name = "default name";
+    export let name = 'default name';
 </script>
 
 <div>
