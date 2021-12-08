@@ -1,5 +1,8 @@
 <script>
     import { createEventDispatcher } from 'svelte'
+    import { onMount } from 'svelte';
+    import { tweened } from 'svelte/motion';
+    import { cubicOut } from 'svelte/easing'
 
     export let label = 'default label';
     export let content = 'default content';
@@ -9,13 +12,49 @@
 
     const dispatch = createEventDispatcher();
 
+    // Get content node
+    let contentNode;
+    const getNode = (node) => contentNode = node;
+
+    // Set up tween
+    const height = tweened(0, {
+		duration: 400,
+		easing: cubicOut
+	});
+
+    // Close contnt
+    function closeContent() {
+        height.set(0);
+    }
+
+    // Open content
+    function opemContent() {
+        contentNode.style.height = 'auto';
+        const contentHeight = contentNode.clientHeight
+        contentNode.style.height = '0px';
+        height.set(contentHeight).then(() => {
+            contentNode.style.height = 'auto'
+        })
+    }
+
+    // Toggle click
     function handleCick() {
         isActive = !isActive;
         dispatch("item-click", id);
     }
 
-    $: activeClass = (!isActive) ? 'hide' : '';
-    $: { if(close) isActive = false };
+    // Reactive action
+    $: { (!isActive) ? closeContent() : opemContent()}
+    $: { if(close) isActive = false }
+
+    onMount(() => {
+        // Apply tween
+        const unsubscribe = height.subscribe((val) => {
+            if(contentNode) contentNode.style.height = `${val}px`
+        })
+
+        return(unsubscribe)
+    })
 
 
 </script>
@@ -26,7 +65,7 @@
         { label }
     </button>
 
-    <div class="accordion__item__content { activeClass }">
+    <div class="accordion__item__content" use:getNode>
         {@html content}
     </div>
 </div>
@@ -39,14 +78,12 @@
             border: 1px #ccc solid;
             margin: 0;
             width: 100%;
+            cursor: pointer;
         }
 
         &__content {
             display: block;
-
-            &.hide {
-                display: none;
-            }
+            overflow: hidden;
 
             :global(img) {
                 width: 100%;
