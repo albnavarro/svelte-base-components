@@ -23,8 +23,9 @@
 
 </script>
 
-<main class="main">
 
+
+<main class="main">
     <div class="main__container">
         {#if activeComponent}
             <svelte:component this={activeComponent.component} {...activeComponent.props}/>
@@ -45,6 +46,8 @@
     </div>
 </main>
 
+
+
 <style type="text/scss">
     .main {
         &__container {
@@ -56,6 +59,9 @@
             position: fixed;
             top: 20px;
             right:20px;
+            background: white;
+            border: 1px #ccc solid;
+            padding: 40px;
         }
     }
 </style>

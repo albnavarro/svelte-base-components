@@ -9,7 +9,31 @@
     },
     {
       "component": "Accordion",
-      "props": {},
+      "props": {
+        "multiple": false,
+        "items": [
+          {
+            "label": "item1",
+            "content": "<p>lorem ipsum dolor 1</p><img src='//via.placeholder.com/350x150'>",
+            "id": 0
+          },
+          {
+            "label": "item2",
+            "content": "<p>lorem ipsum dolor 2</p><img src='//via.placeholder.com/250x150'>",
+            "id": 1
+          },
+          {
+            "label": "item3",
+            "content": "<p>lorem ipsum dolor 3</p><img src='//via.placeholder.com/450x150'>",
+            "id": 2
+          },
+          {
+            "label": "item5",
+            "content": "<p>lorem ipsum dolor 4</p><img src='//via.placeholder.com/150x150'>",
+            "id": 3
+          }
+        ]
+      },
       "id": 1
     }
   ]
