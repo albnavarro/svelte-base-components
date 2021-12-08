@@ -1,5 +1,6 @@
 <script>
     import AccordionItem from './AccordionItem.svelte';
+    import { fade } from 'svelte/transition';
 
     export let multiple = false;
     export let items = [];
@@ -12,32 +13,35 @@
     }
 </script>
 
-<div class="switch-mode">
-    <button
-        class="btn btn--multiple-off {!isMultiple ? 'active' : ''}"
-        on:click={() => (isMultiple = false)}
-    >
-        only one open
-    </button>
-    <button
-        class="btn btn--multiple-on {isMultiple ? 'active' : ''}"
-        on:click={() => (isMultiple = true)}
-    >
-        multiple item open
-    </button>
+<div in:fade>
+    <div class="switch-mode">
+        <button
+            class="btn btn--multiple-off {!isMultiple ? 'active' : ''}"
+            on:click={() => (isMultiple = false)}
+        >
+            only one open
+        </button>
+        <button
+            class="btn btn--multiple-on {isMultiple ? 'active' : ''}"
+            on:click={() => (isMultiple = true)}
+        >
+            multiple item open
+        </button>
+    </div>
+
+    <div class="accordion">
+        {#each items as { label, content, id }, index (id)}
+            <AccordionItem
+                close={activeIndex !== index && !isMultiple}
+                {label}
+                {content}
+                id={index}
+                on:item-click={handleCick}
+            />
+        {/each}
+    </div>
 </div>
 
-<div class="accordion">
-    {#each items as { label, content, id }, index (id)}
-        <AccordionItem
-            close={activeIndex !== index && !isMultiple}
-            {label}
-            {content}
-            id={index}
-            on:item-click={handleCick}
-        />
-    {/each}
-</div>
 
 <style lang="scss">
     .accordion {
