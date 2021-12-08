@@ -1,0 +1,16 @@
+{
+  "components": [
+    {
+      "component": "Test",
+      "props": {
+        "name": "test component"
+      },
+      "id": 0
+    },
+    {
+      "component": "Accordion",
+      "props": {},
+      "id": 1
+    }
+  ]
+}
