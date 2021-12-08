@@ -48,7 +48,7 @@
     </div>
 </main>
 
-<style type="text/scss">
+<style lang="scss">
     .main {
         &__container {
             max-width: 1440px;

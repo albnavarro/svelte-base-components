@@ -71,7 +71,7 @@
     </div>
 </div>
 
-<style type="text/scss">
+<style lang="scss">
     .accordion__item {
         margin-bottom: 20px;
 

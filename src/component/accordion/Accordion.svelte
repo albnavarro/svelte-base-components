@@ -39,7 +39,7 @@
     {/each}
 </div>
 
-<style type="text/scss">
+<style lang="scss">
     .accordion {
         max-width: 300px;
     }
