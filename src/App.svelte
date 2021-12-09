@@ -14,7 +14,7 @@
     // Inizialize Active component
     let activeComponent = {
         component: null,
-        id: -1
+        id: -1,
     };
 
     function handlerClick(e, id) {
@@ -26,22 +26,23 @@
         // const componentExist = selectedResult?.component in components;
 
         //Atom make trouble with optional chaining in template arggrr ....
-        const isTheSameComponent = 'id' in activeComponent && activeComponent.id === id;
+        const isTheSameComponent =
+            'id' in activeComponent && activeComponent.id === id;
         const componentExist = selectedResult.component in components;
 
-        if(!componentExist) console.warn(`${selectedResult.component} component not exist`);
+        if (!componentExist)
+            console.warn(`${selectedResult.component} component not exist`);
 
         //Set active component
         if (componentExist && !isTheSameComponent) {
             activeComponent = {
                 component: components[selectedResult.component],
                 props: selectedResult.props,
-                id
+                id,
             };
         }
     }
 </script>
-
 
 <!-- Template -->
 <main class="main">

@@ -48,8 +48,12 @@
     }
 
     // Reactive action
-    $: { !isActive ? closeContent() : opemContent(); }
-    $: { if (close) isActive = false; }
+    $: {
+        !isActive ? closeContent() : opemContent();
+    }
+    $: {
+        if (close) isActive = false;
+    }
 
     onMount(() => {
         // Apply tween
@@ -71,7 +75,6 @@
         {@html content}
     </div>
 </div>
-
 
 <!-- Style -->
 <style lang="scss">
