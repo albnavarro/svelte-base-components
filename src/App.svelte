@@ -29,6 +29,8 @@
         const isTheSameComponent = 'id' in activeComponent && activeComponent.id === id;
         const componentExist = selectedResult.component in components;
 
+        if(!componentExist) console.warn(`${selectedResult.component} component not exist`);
+
         //Set active component
         if (componentExist && !isTheSameComponent) {
             activeComponent = {
