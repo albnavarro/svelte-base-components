@@ -1,3 +1,4 @@
+<!-- Script -->
 <script>
     import { createEventDispatcher } from 'svelte';
     import { onMount } from 'svelte';
@@ -44,12 +45,8 @@
     }
 
     // Reactive action
-    $: {
-        !isActive ? closeContent() : opemContent();
-    }
-    $: {
-        if (close) isActive = false;
-    }
+    $: { !isActive ? closeContent() : opemContent(); }
+    $: { if (close) isActive = false; }
 
     onMount(() => {
         // Apply tween
@@ -61,6 +58,7 @@
     });
 </script>
 
+<!-- Template -->
 <div class="item">
     <button class="toggle" on:click={handleCick}>
         {label}
@@ -71,8 +69,9 @@
     </div>
 </div>
 
-<style lang="scss">
 
+<!-- Style -->
+<style lang="scss">
     .item {
         margin-bottom: 20px;
     }
@@ -92,5 +91,4 @@
             width: 100%;
         }
     }
-    
 </style>

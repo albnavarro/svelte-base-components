@@ -1,3 +1,5 @@
+
+<!-- Script -->
 <script>
     import AccordionItem from './AccordionItem.svelte';
     import { fade } from 'svelte/transition';
@@ -13,16 +15,20 @@
     }
 </script>
 
+
+<!-- Template -->
 <div in:fade>
     <div class="switch-mode">
         <button
-            class="btn btn--multiple-off {!isMultiple ? 'active' : ''}"
+            class="btn"
+            class:active={!isMultiple}
             on:click={() => (isMultiple = false)}
         >
             only one open
         </button>
         <button
-            class="btn btn--multiple-on {isMultiple ? 'active' : ''}"
+            class="btn"
+            class:active={isMultiple}
             on:click={() => (isMultiple = true)}
         >
             multiple item open
@@ -42,7 +48,7 @@
     </div>
 </div>
 
-
+<!-- Style -->
 <style lang="scss">
     .accordion {
         max-width: 300px;
@@ -50,7 +56,7 @@
 
     .btn {
         margin-bottom: 20px;
-        
+
         &.active {
             border: 2px $black solid;
         }

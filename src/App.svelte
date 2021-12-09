@@ -1,3 +1,4 @@
+<!-- Script -->
 <script>
     import * as data from './locales/components.json';
     import Test from './component/Test.svelte';
@@ -26,6 +27,7 @@
     }
 </script>
 
+<!-- Template -->
 <main class="main">
     <div class="container global-style__test">
         {#if activeComponent}
@@ -52,6 +54,7 @@
     </div>
 </main>
 
+<!-- Style -->
 <style lang="scss">
     .container {
         max-width: 1440px;
