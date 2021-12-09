@@ -61,34 +61,36 @@
     });
 </script>
 
-<div class="accordion__item">
-    <button class="accordion__item__toggle" on:click={handleCick}>
+<div class="item">
+    <button class="toggle" on:click={handleCick}>
         {label}
     </button>
 
-    <div class="accordion__item__content" use:getNode>
+    <div class="content" use:getNode>
         {@html content}
     </div>
 </div>
 
 <style lang="scss">
-    .accordion__item {
+
+    .item {
         margin-bottom: 20px;
+    }
 
-        &__toggle {
-            border: 1px $grey solid;
-            margin: 0;
+    .toggle {
+        border: 1px $grey solid;
+        margin: 0;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .content {
+        display: block;
+        overflow: hidden;
+
+        :global(img) {
             width: 100%;
-            cursor: pointer;
-        }
-
-        &__content {
-            display: block;
-            overflow: hidden;
-
-            :global(img) {
-                width: 100%;
-            }
         }
     }
+    
 </style>

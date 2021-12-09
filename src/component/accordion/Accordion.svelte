@@ -49,6 +49,8 @@
     }
 
     .btn {
+        margin-bottom: 20px;
+        
         &.active {
             border: 2px $black solid;
         }

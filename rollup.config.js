@@ -52,6 +52,7 @@ export default {
                 scss: {
                     prependData: `@import "src/scss/abstract.scss";`,
                 },
+                postcss: true
             }),
         }),
         // we'll extract any component CSS out into
