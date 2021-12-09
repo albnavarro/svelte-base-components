@@ -9,33 +9,36 @@
     export let content = 'default content';
     export let id = 0;
     export let close = true;
-    export let isActive = false;
 
     const dispatch = createEventDispatcher();
+
+    //Internal active state
+    let isActive = false;
 
     // Get content node
     let contentNode;
     const getNode = (node) => (contentNode = node);
 
     // Set up tween
-    const height = tweened(0, {
+    const heightTween = tweened(0, {
         duration: 400,
         easing: cubicOut,
     });
 
     // Close contnt
     function closeContent() {
-        height.set(0);
+        heightTween.set(0);
     }
 
     // Open content
-    function opemContent() {
+    async function opemContent() {
         contentNode.style.height = 'auto';
         const contentHeight = contentNode.clientHeight;
         contentNode.style.height = '0px';
-        height.set(contentHeight).then(() => {
-            contentNode.style.height = 'auto';
-        });
+        
+        await heightTween.set(contentHeight);
+
+        contentNode.style.height = 'auto';
     }
 
     // Toggle click
@@ -50,7 +53,7 @@
 
     onMount(() => {
         // Apply tween
-        const unsubscribe = height.subscribe((val) => {
+        const unsubscribe = heightTween.subscribe((val) => {
             if (contentNode) contentNode.style.height = `${val}px`;
         });
 

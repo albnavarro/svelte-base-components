@@ -8,7 +8,6 @@
     export let items = [];
 
     let activeIndex = -1;
-    let isMultiple = multiple;
 
     function handleCick({ detail: id }) {
         activeIndex = id;
@@ -18,27 +17,30 @@
 
 <!-- Template -->
 <div in:fade>
+
+    <!-- test switch mode -->
     <div class="switch-mode">
         <button
             class="btn"
-            class:active={!isMultiple}
-            on:click={() => (isMultiple = false)}
+            class:active={!multiple}
+            on:click={() => (multiple = false)}
         >
-            only one open
+            Single mode
         </button>
         <button
             class="btn"
-            class:active={isMultiple}
-            on:click={() => (isMultiple = true)}
+            class:active={multiple}
+            on:click={() => (multiple = true)}
         >
-            multiple item open
+            Multiple mode
         </button>
     </div>
 
+    <!-- Accordion -->
     <div class="accordion">
         {#each items as { label, content, id }, index (id)}
             <AccordionItem
-                close={activeIndex !== index && !isMultiple}
+                close={activeIndex !== index && !multiple}
                 {label}
                 {content}
                 id={index}

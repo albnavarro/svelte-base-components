@@ -1,5 +1,6 @@
 <!-- Script -->
 <script>
+    import { afterUpdate } from 'svelte'
     import * as data from './locales/components.json';
     import Test from './component/Test.svelte';
     import Accordion from './component/accordion/Accordion.svelte';
@@ -25,6 +26,10 @@
             };
         }
     }
+
+    afterUpdate(() => {
+        console.log('update');
+    })
 </script>
 
 <!-- Template -->
