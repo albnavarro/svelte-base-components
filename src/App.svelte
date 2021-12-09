@@ -1,6 +1,5 @@
 <!-- Script -->
 <script>
-    import { afterUpdate } from 'svelte'
     import * as data from './locales/components.json';
     import Test from './component/Test.svelte';
     import Accordion from './component/accordion/Accordion.svelte';
@@ -12,25 +11,35 @@
     // Pairing component form string in json to real component
     const components = { Test, Accordion };
 
-    // Active component
-    let activeComponent = null;
+    // Inizialize Active component
+    let activeComponent = {
+        component: null,
+        id: -1
+    };
 
     function handlerClick(e, id) {
+        // Get component from data
         const selectedResult = data.components.find((item) => item.id === id);
 
-        // If component exist update activeComponent
-        if (selectedResult && selectedResult.component in components) {
+        // Secure check
+        // const isTheSameComponent = activeComponent?.id === id;
+        // const componentExist = selectedResult?.component in components;
+
+        //Atom make trouble with optional chaining in template arggrr ....
+        const isTheSameComponent = 'id' in activeComponent && activeComponent.id === id;
+        const componentExist = selectedResult.component in components;
+
+        //Set active component
+        if (componentExist && !isTheSameComponent) {
             activeComponent = {
                 component: components[selectedResult.component],
                 props: selectedResult.props,
+                id
             };
         }
     }
-
-    afterUpdate(() => {
-        console.log('update');
-    })
 </script>
+
 
 <!-- Template -->
 <main class="main">

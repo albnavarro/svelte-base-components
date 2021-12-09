@@ -19,7 +19,7 @@
 <div in:fade>
 
     <!-- test switch mode -->
-    <div class="switch-mode">
+    <div>
         <button
             class:active={!multiple}
             on:click={() => (multiple = false)}
