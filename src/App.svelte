@@ -59,8 +59,8 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            background: white;
-            border: 1px #ccc solid;
+            background: $white;
+            border: 1px $grey solid;
             padding: 40px;
         }
     }

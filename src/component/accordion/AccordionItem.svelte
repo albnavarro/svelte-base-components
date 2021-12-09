@@ -76,7 +76,7 @@
         margin-bottom: 20px;
 
         &__toggle {
-            border: 1px #ccc solid;
+            border: 1px $grey solid;
             margin: 0;
             width: 100%;
             cursor: pointer;
