@@ -35,7 +35,7 @@
         contentNode.style.height = 'auto';
         const contentHeight = contentNode.clientHeight;
         contentNode.style.height = '0px';
-        
+
         await heightTween.set(contentHeight);
 
         contentNode.style.height = 'auto';
@@ -63,7 +63,7 @@
 
 <!-- Template -->
 <div class="item">
-    <button class="toggle" on:click={handleCick}>
+    <button on:click={handleCick}>
         {label}
     </button>
 
@@ -79,7 +79,7 @@
         margin-bottom: 20px;
     }
 
-    .toggle {
+    button {
         border: 1px $grey solid;
         margin: 0;
         width: 100%;

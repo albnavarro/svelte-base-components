@@ -21,14 +21,12 @@
     <!-- test switch mode -->
     <div class="switch-mode">
         <button
-            class="btn"
             class:active={!multiple}
             on:click={() => (multiple = false)}
         >
             Single mode
         </button>
         <button
-            class="btn"
             class:active={multiple}
             on:click={() => (multiple = true)}
         >
@@ -56,7 +54,7 @@
         max-width: 300px;
     }
 
-    .btn {
+    button {
         margin-bottom: 20px;
 
         &.active {
